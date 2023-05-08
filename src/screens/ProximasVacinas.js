@@ -9,11 +9,6 @@ const ProximasVacinas = () => {
 
         <View style={styles.container}>
             
-            <View style={styles.nav}>
-              <Image source={require('../assets/images/icone-vacina.png')}/>
-              <Text style={styles.text}>Próximas Vacinas</Text>
-            </View>
-
             <View style={styles.forms}>
 
                 <View style ={styles.li}>

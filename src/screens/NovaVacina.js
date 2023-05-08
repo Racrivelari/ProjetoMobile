@@ -1,69 +1,103 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Button } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native'
 import { RadioButton } from 'react-native-paper';
 import React, { useState } from 'react';
 import DatePicker from 'react-native-date-picker'
-import CustomButton from '../components/Button/Button';
-
+import CustomButton from '../components/Button';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const NovaVacina = (props) => {
 
-    const [date, setDate] = useState(new Date())
-    const [open, setOpen] = useState(false)
+    const [dateVac, setDateVac] = useState(new Date())
+    const [dateProx, setDateProx] = useState(new Date())
+    const [openVac, setOpenVac] = useState(false)
+    const [openProx, setOpenProx] = useState(false)
+    const [value, setValue] = useState('1Dose');
+    
+    const handleDateVacSelect = (dateVac) => {
+        setDateVac(dateVac);
+        setOpenVac(false);
+    };
+    
+    const handleDateProxSelect = (dateProx) => {
+        setDateProx(dateProx);
+        setOpenProx(false);
+    };
 
+    const formatDate = (date) =>{
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return `${day}/${month}/${year}`;
+    }
 
     return (
 
         <View style={styles.container}>
 
-            <View style={styles.nav}>
-                <Image source={require('../assets/images/icone-vacina.png')} />
-                <Text style={styles.text}>Nova Vacina</Text>
+          
+
+            <View style={{ marginTop: 70 }}></View>
+
+            <View style={styles.row}>
+                <Text style={styles.label}>Data de vacinação</Text>
+                <TouchableOpacity style={styles.input} onPress={() => setOpenVac(true)}  >
+                    
+                    <Text style={styles.textD}> {formatDate(dateVac)} </Text>
+                </TouchableOpacity>
+                <DatePicker modal open={openVac} date={dateVac} mode='date' 
+                    onConfirm={handleDateVacSelect} 
+                    onCancel={() => setOpenVac(false)}
+                />
             </View>
 
-            <View style={styles.login}>
+            <View style={styles.row}>
+                <Text style={styles.label}>Vacina</Text>
+                <TextInput style={styles.input} placeholder="Hepatite B" placeholderTextColor="#419ED7" />
+            </View>
 
-                <View style={{ flexDirection: 'column', textAlign: 'right', marginTop: 60 }}>
-                    <Text style={styles.label}>Data de vacinação</Text>
-                    <Text style={styles.label}>Vacina</Text>
-                    <Text style={styles.label}>Dose</Text>
-                    <Text style={styles.label}>Comprovante</Text>
-                    <Text style={styles.label}>Próxima Vacinação</Text>
-                </View>
-
-
-                <View style={{ flexDirection: 'column', marginLeft: 5, marginTop: 63 }}>
-                    <TextInput style={styles.input} placeholder="11/08/2022" placeholderTextColor="#419ED7" />
-                    <TextInput style={styles.input} placeholder="Hepatite B" placeholderTextColor="#419ED7" />
-
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <RadioButton value="first" color="blue" uncheckedColor="#FFFFFF" />
+            <View style={styles.row}>
+                <Text style={styles.label}>Dose</Text>
+                <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+                    <View style={styles.containerRadio}>
+                        <View style={styles.radioButtonContainer}>
+                            <RadioButton value="1Dose" color='#3F92C5'  />
                             <Text style={styles.textI}>1a. dose</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <RadioButton value="second" color="blue" uncheckedColor="#FFFFFF" />
+                        <View style={styles.radioButtonContainer}>
+                            <RadioButton value="2Dose" color='#3F92C5' />
                             <Text style={styles.textI}>2a. dose</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <RadioButton value="third" color="blue" uncheckedColor="#FFFFFF" />
+                        <View style={styles.radioButtonContainer}>
+                            <RadioButton value="3Dose" color='#3F92C5' />
                             <Text style={styles.textI}>3a. dose</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <RadioButton value="fourth" color="blue" uncheckedColor="#FFFFFF" />
-                            <Text style={styles.textI}>Dose única</Text>
+                        <View style={styles.radioButtonContainer}>
+                            <RadioButton value="DoseUnica" color='#3F92C5' />
+                            <Text style={styles.textI}>Dose única </Text>
                         </View>
-
                     </View>
+                </RadioButton.Group>
+            </View>
 
-                    <Button title="Selecionar imagem..." onPress={() => setOpen(true)} />
-                    <TextInput style={styles.input} placeholder="11/08/2022" placeholderTextColor="#419ED7" />
+            <View style={[styles.row]}>
+                <Text style={styles.label}>Comprovante</Text>
+                <CustomButton color= "#419ED7" width={170} height={30} text= "Selecione imagem..."/>
+            </View>
+            <Image style ={{width: 180, height: 90, marginLeft:160}} source={require('../assets/images/image-comprovante.png')} />
 
-                </View>
+            <View style={[styles.row, {marginTop:15}]}>
+                <Text style={styles.label}>Próxima vacinação</Text>
+                <TouchableOpacity style={styles.input} onPress={() => setOpenProx(true)}  >
+                    <Text style={styles.textD}> {formatDate(dateProx)} </Text>
+                </TouchableOpacity>
+                <DatePicker modal open={openProx} date={dateProx} mode='date' 
+                    onConfirm={handleDateProxSelect} 
+                    onCancel={() => setOpenProx(false)}
+                />
+            </View>
 
-                <View style={styles.botoes}>
-                    <CustomButton onPress={() => props.navigation.push('Home')} color= "#37BD6D" size={160} marginTop={300}  text= "Cadastrar"/>
-                </View>
-
+            <View style={styles.botoes}>
+                <CustomButton onPress={() => props.navigation.pop()} color= "#37BD6D" width={160} height={40} text= "Cadastrar"/>
             </View>
 
         </View>
@@ -72,47 +106,38 @@ const NovaVacina = (props) => {
 };
 
 const styles = StyleSheet.create({
+    textD: {
+        color: '#419ED7',
+        fontFamily: 'AveriaLibre-Regular',
+        fontSize: 16
+    },
     container: {
         flex: 1,
+        backgroundColor: '#ADD5D0',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     nav: {
         alignItems: 'center',
         flexDirection: 'row',
         padding: 10,
         backgroundColor: '#C1E7E3',
-    },
-    login: {
-        backgroundColor: '#ADD5D0',
-        flex: 1,
-        flexDirection: 'row'
+        width: "100%",
     },
     text: {
         fontSize: 34,
         fontFamily: 'AveriaLibre-Regular',
         color: '#419ED7',
     },
-    label: {
-        color: 'white',
-        marginLeft: 4,
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-        textAlign: 'right',
-        marginTop: 4,
-        padding: 7
-    },
     textB: {
         fontSize: 18,
         fontFamily: 'AveriaLibre-Regular',
         color: 'white'
     },
-    textI: {
-        fontSize: 14,
-        fontFamily: 'AveriaLibre-Regular',
-        color: 'white'
-    },
+ 
     botoes: {
         justifyContent: 'center',
-        marginLeft: -260,
+        flex: 1
     },
     button: {
         width: 160,
@@ -122,16 +147,43 @@ const styles = StyleSheet.create({
         backgroundColor: '#37BD6D',
         shadowColor: 'black',
         elevation: 10,
-        marginTop: 300
     },
+   
     input: {
         backgroundColor: 'white',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        width: 230,
+        width: 160,
         height: 30,
-        marginTop: 6,
-        fontSize: 14,
+        fontSize: 16,
+        fontFamily: 'AveriaLibre-Regular',
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        color: '#419ED7',
+    },
+
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    label: {
+        marginRight: 8,
+        color: 'white',
+        fontSize: 16,
+        fontFamily: 'AveriaLibre-Regular',
+        textAlign: 'right',
+        width: 140,
+    },
+    containerRadio: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    radioButtonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    textI: {
+        color: 'white',
+        fontSize: 16,
         fontFamily: 'AveriaLibre-Regular',
     },
 });

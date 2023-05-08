@@ -1,12 +1,12 @@
 import React from 'react';
-import { TextInput, Text } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 
-const InputField = ({ color, size, marginTop , text  }) => {
+const CustomButton = ({ color, width, height, marginTop , text, onPress }) => {
 
-  const inputStyle = {
+  const buttonStyle = {
     backgroundColor: color,
-    width: size,
-    height: 40,
+    width: width,
+    height: height,
     shadowColor: 'black',
     elevation: 10,
     alignItems: 'center',
@@ -22,9 +22,9 @@ const InputField = ({ color, size, marginTop , text  }) => {
 
   return (
 
-    <TextInput style={buttonStyle}>
+    <TouchableOpacity onPress={onPress} style={buttonStyle}>
       <Text style={textStyle}>{text}</Text>
-    </TextInput>
+    </TouchableOpacity>
   );
 };
 

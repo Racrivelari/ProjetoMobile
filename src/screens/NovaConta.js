@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity} from 'react
 import { RadioButton } from 'react-native-paper';
 import React, { useState } from 'react';
 import DatePicker from 'react-native-date-picker'
-import CustomButton from '../components/Button/Button';
+import CustomButton from '../components/Button';
 
 const NovaConta = (props) => {
 
@@ -24,10 +24,7 @@ const NovaConta = (props) => {
 
         <View style={styles.container}>
 
-            <View style={styles.nav}>
-                <Image source={require('../assets/images/icone-vacina.png')} />
-                <Text style={styles.text}>Nova Conta</Text>
-            </View>
+        
 
             <View style={{ marginTop: 70 }}></View>
 
@@ -81,7 +78,7 @@ const NovaConta = (props) => {
             <Text style={{ color: 'red', fontFamily: 'AveriaLibre-Regular', fontSize: 16, marginLeft: 40 }}>Senha não confere!</Text>
 
             <View style={styles.botoes}>
-                <CustomButton onPress={() => props.navigation.push('Login')} color= "#37BD6D" size={160} text= "Cadastrar"/>
+                <CustomButton onPress={() => props.navigation.pop()} color= "#37BD6D" width={160} height={40} text= "Cadastrar"/>
             </View>
 
         </View>
@@ -110,18 +107,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    nav: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        padding: 10,
-        backgroundColor: '#C1E7E3',
-        width: "100%",
-    },
-    text: {
-        fontSize: 34,
-        fontFamily: 'AveriaLibre-Regular',
-        color: '#419ED7',
-    },
+  
     textB: {
         fontSize: 18,
         fontFamily: 'AveriaLibre-Regular',

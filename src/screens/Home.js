@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react';
-import CustomButton from '../components/Button/Button';
+import CustomButton from '../components/Button';
 
 //TELA PRONTA, + NAVEGACAO NOS BOTOES + INVES DE USAR TOUCHABLEOPACITY AQUI, CRIAR UM COMPONENT BUTTON COM PARAMETRO DE TEXTO E CORE MARGIN
 
@@ -12,11 +12,6 @@ const Home = (props) => {
 
         <View style={styles.container}>
             
-            <View style={styles.nav}>
-              <Image source={require('../assets/images/icone-vacina.png')}/>
-              <Text style={styles.text}>Home</Text>
-            </View>
-
             <View style={styles.forms}>
 
                 <View style= {styles.pesquisa}>
@@ -39,7 +34,7 @@ const Home = (props) => {
                 </View>
                 
                 <View style ={styles.botao}>
-                    <CustomButton onPress={() => props.navigation.push('NovaVacina')} color= "#37BD6D" size={160} text= "Nova vacina"/>
+                    <CustomButton onPress={() => props.navigation.push('NovaVacina')} color= "#37BD6D" width={160} height={40} text= "Nova vacina"/>
                 </View>
 
             </View>

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
-import  CustomButton from '../components/Button/Button'
+import  CustomButton from '../components/Button'
 
 //TELA PRONTA, + NAVEGACAO NOS BOTOES + INVES DE USAR TOUCHABLEOPACITY AQUI, CRIAR UM COMPONENT BUTTON COM PARAMETRO DE TEXTO E CORE MARGIN
 
@@ -22,7 +22,7 @@ const RecuperarSenha = (props) => {
                 </View>
                 
                 <View style ={styles.botao}>
-                    <CustomButton onPress={() => props.navigation.push('Login')} color= "#37BD6D" size={160} text= "Recuperar senha"/>
+                    <CustomButton onPress={() => props.navigation.pop()} color= "#37BD6D" width={160} height={40} text= "Recuperar senha"/>
                 </View>
 
             </View>
