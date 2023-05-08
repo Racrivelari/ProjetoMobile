@@ -1,16 +1,39 @@
-import { View, Image, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 
 const CustomDrawer = (props) => {
     return (
         <DrawerContentScrollView {...props}>
-            <View>
-                <Image style={{ height: 100, width: 100, alignSelf: 'center' }} source={{ uri: 'https://randomuser.me/api/portraits/women/1.jpg' }} />
-                <Text style={{ fontSize: 12, color: 'blue', alignSelf: 'center' }}>luana.teixeira@yahoo.com.br</Text>
+
+            <View style={{
+                flex: 1,
+                height: 100,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <Text style={{
+                    fontFamily: 'AveriaLibre-Regular',
+                    fontSize: 30,
+                    color: '#419ED7',
+                }}> Olá Jurandir </Text>
             </View>
+
+
+            <View style={{
+                width: '85%',
+                height: 2,
+                backgroundColor: '#419ED7',
+                alignSelf: 'center',
+                marginBottom: 30
+            }}
+            ></View>
+
+
             <DrawerItemList {...props} />
-            <DrawerItem labelStyle={{ color: 'white' }} label="Sair" onPress={() => { props.navigation.popToTop() }} />
-            <DrawerItem labelStyle={{ color: 'white' }} label="Tela3" onPress={() => { props.navigation.push('Tela3'); props.navigation.closeDrawer() }} />
+            <View style={{}}>
+                <DrawerItem label="Sair" onPress={() => { props.navigation.popToTop() }}/>
+            </View>
 
         </DrawerContentScrollView>
 

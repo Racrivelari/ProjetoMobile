@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     li:{
       marginBottom: 10,
       backgroundColor: 'white',
-      width:'90%',
+      width:'30%',
       height: 50,
       borderRadius: 6,
       paddingLeft:3,
