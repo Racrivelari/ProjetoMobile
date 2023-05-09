@@ -1,8 +1,7 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React, { useState } from 'react';
 import CustomButton from '../components/Button';
 
-//TELA PRONTA, + NAVEGACAO NOS BOTOES + INVES DE USAR TOUCHABLEOPACITY AQUI, CRIAR UM COMPONENT BUTTON COM PARAMETRO DE TEXTO E CORE MARGIN
 
 const Home = (props) => {
 
