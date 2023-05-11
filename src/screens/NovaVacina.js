@@ -3,7 +3,7 @@ import { RadioButton } from 'react-native-paper';
 import React, { useState } from 'react';
 import DatePicker from 'react-native-date-picker'
 import CustomButton from '../components/Button';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {styles} from '../styles/NovaVacinaStyle';
 
 const NovaVacina = (props) => {
 
@@ -25,8 +25,8 @@ const NovaVacina = (props) => {
 
     const formatDate = (date) =>{
         const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
         return `${day}/${month}/${year}`;
     }
 
@@ -34,17 +34,15 @@ const NovaVacina = (props) => {
 
         <View style={styles.container}>
 
-          
-
             <View style={{ marginTop: 70 }}></View>
 
             <View style={styles.row}>
                 <Text style={styles.label}>Data de vacinação</Text>
                 <TouchableOpacity style={styles.input} onPress={() => setOpenVac(true)}  >
-                    
+                    <Image style ={{position: 'absolute', width: 20, height: 25, marginLeft:130, marginTop: 5}} source={require('../assets/images/calendar.png')} />
                     <Text style={styles.textD}> {formatDate(dateVac)} </Text>
                 </TouchableOpacity>
-                <DatePicker modal open={openVac} date={dateVac} mode='date' 
+                <DatePicker modal title='Selecione a data' open={openVac} date={dateVac} locale='pt-BR' mode='date' 
                     onConfirm={handleDateVacSelect} 
                     onCancel={() => setOpenVac(false)}
                 />
@@ -88,106 +86,26 @@ const NovaVacina = (props) => {
             <View style={[styles.row, {marginTop:15}]}>
                 <Text style={styles.label}>Próxima vacinação</Text>
                 <TouchableOpacity style={styles.input} onPress={() => setOpenProx(true)}  >
+                    <Image style ={{position: 'absolute', width: 20, height: 25, marginLeft:130, marginTop: 5}} source={require('../assets/images/calendar.png')} />
                     <Text style={styles.textD}> {formatDate(dateProx)} </Text>
                 </TouchableOpacity>
-                <DatePicker modal open={openProx} date={dateProx} mode='date' 
+                <DatePicker modal title='Selecione a data' open={openProx} locale='pt-BR' date={dateProx} mode='date' 
                     onConfirm={handleDateProxSelect} 
                     onCancel={() => setOpenProx(false)}
                 />
             </View>
 
             <View style={styles.botoes}>
-                <CustomButton onPress={() => props.navigation.pop()} color= "#37BD6D" width={160} height={40} text= "Cadastrar"/>
+                {/* <CustomButton onPress={() => props.navigation.pop()} color= "#37BD6D" width={160} height={40} text= "Cadastrar"/> */}
+                <CustomButton onPress={() => props.navigation.push('EditarVacina')} color= "#37BD6D" width={160} height={40} text= "Cadastrar"/>
+
+                
             </View>
 
         </View>
 
     );
 };
-
-const styles = StyleSheet.create({
-    textD: {
-        color: '#419ED7',
-        fontFamily: 'AveriaLibre-Regular',
-        fontSize: 16
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#ADD5D0',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    nav: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        padding: 10,
-        backgroundColor: '#C1E7E3',
-        width: "100%",
-    },
-    text: {
-        fontSize: 34,
-        fontFamily: 'AveriaLibre-Regular',
-        color: '#419ED7',
-    },
-    textB: {
-        fontSize: 18,
-        fontFamily: 'AveriaLibre-Regular',
-        color: 'white'
-    },
- 
-    botoes: {
-        justifyContent: 'center',
-        flex: 1
-    },
-    button: {
-        width: 160,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#37BD6D',
-        shadowColor: 'black',
-        elevation: 10,
-    },
-   
-    input: {
-        backgroundColor: 'white',
-        width: 160,
-        height: 30,
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-        paddingVertical: 6,
-        paddingHorizontal: 10,
-        color: '#419ED7',
-    },
-
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    label: {
-        marginRight: 8,
-        color: 'white',
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-        textAlign: 'right',
-        width: 140,
-    },
-    containerRadio: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-    },
-    radioButtonContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    textI: {
-        color: 'white',
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-    },
-});
-
 
 export default NovaVacina
 

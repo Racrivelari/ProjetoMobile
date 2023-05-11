@@ -1,11 +1,13 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native'
+import { View, Text, Modal, Image, TextInput, TouchableOpacity, Button} from 'react-native'
 import { RadioButton } from 'react-native-paper';
 import React, { useState } from 'react';
 import DatePicker from 'react-native-date-picker'
 import CustomButton from '../components/Button';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {styles} from '../styles/EditarVacinaStyle';
 
 const NovaVacina = (props) => {
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     const [dateVac, setDateVac] = useState(new Date())
     const [dateProx, setDateProx] = useState(new Date())
@@ -33,8 +35,6 @@ const NovaVacina = (props) => {
     return (
 
         <View style={styles.container}>
-
-          
 
             <View style={{ marginTop: 70 }}></View>
 
@@ -96,9 +96,28 @@ const NovaVacina = (props) => {
                 />
             </View>
 
+
+            <View>
+                <Modal animationType="fade" transparent={true} visible={modalVisible}
+                onRequestClose={() => setModalVisible(false)}>
+
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                        <View style={{ backgroundColor: '#fff', padding: 20 , width:'90%'}}>
+                            <Text style={{ color:'#FD7979', fontFamily:'AveriaLibre-Regular', fontSize: 22, marginBottom: 26, textAlign: 'center' }}>Tem certeza que deseja remover essa vacina?</Text>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                                <CustomButton onPress={() => props.navigation.push('DrawerNavigation')} color= "#FD7979" width={140} height={40} text= "SIM"/>
+                                <CustomButton onPress={() => setModalVisible(false)} color= "#3F92C5" width={140} height={40} text= "CANCELAR"/>
+                            </View>      
+                        </View>
+                    </View>
+                    
+                </Modal>
+            </View>
+
+
             <View style={styles.botoes}>
-                <CustomButton onPress={() => props.navigation.push('Home')} color= "#37BD6D" width={160} height={40} text= "Salvar alterações"/>
-                <CustomButton onPress={() => props.navigation.push('Home')} color= "#FD7979" width={160} height={40} marginTop={40} text= "Excluir"/>
+                <CustomButton onPress={() => props.navigation.push('DrawerNavigation')} color= "#37BD6D" width={160} height={40} text= "Salvar alterações"/>
+                <CustomButton onPress={() => setModalVisible(true)} color= "#FD7979" width={160} height={40} marginTop={40} text= "Excluir"/>
             </View>
 
         </View>
@@ -106,88 +125,7 @@ const NovaVacina = (props) => {
     );
 };
 
-const styles = StyleSheet.create({
-    textD: {
-        color: '#419ED7',
-        fontFamily: 'AveriaLibre-Regular',
-        fontSize: 16
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#ADD5D0',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    nav: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        padding: 10,
-        backgroundColor: '#C1E7E3',
-        width: "100%",
-    },
-    text: {
-        fontSize: 34,
-        fontFamily: 'AveriaLibre-Regular',
-        color: '#419ED7',
-    },
-    textB: {
-        fontSize: 18,
-        fontFamily: 'AveriaLibre-Regular',
-        color: 'white'
-    },
- 
-    botoes: {
-        justifyContent: 'center',
-        flex: 1
-    },
-    button: {
-        width: 160,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#37BD6D',
-        shadowColor: 'black',
-        elevation: 10,
-    },
-   
-    input: {
-        backgroundColor: 'white',
-        width: 160,
-        height: 30,
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-        paddingVertical: 6,
-        paddingHorizontal: 10,
-        color: '#419ED7',
-    },
 
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    label: {
-        marginRight: 8,
-        color: 'white',
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-        textAlign: 'right',
-        width: 140,
-    },
-    containerRadio: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-    },
-    radioButtonContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    textI: {
-        color: 'white',
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-    },
-});
 
 
 export default NovaVacina

@@ -3,15 +3,15 @@ import { RadioButton } from 'react-native-paper';
 import React, { useState } from 'react';
 import DatePicker from 'react-native-date-picker'
 import CustomButton from '../components/Button';
-
+import {styles} from '../styles/NovaContaStyle'
 const NovaConta = (props) => {
 
     const [date, setDate] = useState(new Date())
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState('Masculino');
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
     const formattedDate = `${day}/${month}/${year}`;
 
     //func que trata selecao da data
@@ -52,9 +52,10 @@ const NovaConta = (props) => {
             <View style={styles.row}>
                 <Text style={styles.label}>Data nascimento</Text>
                 <TouchableOpacity style={styles.input} onPress={() => setOpen(true)}  >
+                    <Image style ={{position: 'absolute', width: 20, height: 25, marginLeft:200, marginTop: 5}} source={require('../assets/images/calendar.png')} />
                     <Text style={styles.textD}> {formattedDate} </Text>
                 </TouchableOpacity>
-                <DatePicker modal open={open} date={date} mode='date' 
+                <DatePicker modal title='Selecione a data' open={open} date={date} locale='pt-BR' mode='date' 
                     onConfirm={handleDateSelect} 
                     onCancel={() => setOpen(false)}
                 />
@@ -86,78 +87,7 @@ const NovaConta = (props) => {
     );
 };
 
-const styles = StyleSheet.create({
-    textD: {
-        color: '#419ED7',
-        fontFamily: 'AveriaLibre-Regular',
-        fontSize: 16
-    },
-    containerRadio: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    radioButtonContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#ADD5D0',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-  
-    textB: {
-        fontSize: 18,
-        fontFamily: 'AveriaLibre-Regular',
-        color: 'white'
-    },
-    textI: {
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-        color: 'white',
-        alignSelf: 'center',
-    },
-    botoes: {
-        justifyContent: 'center',
-        flex: 1
-    },
-    button: {
-        width: 160,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#37BD6D',
-        shadowColor: 'black',
-        elevation: 10,
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
 
-    },
-    label: {
-        marginRight: 10,
-        width: 120,
-        color: 'white',
-        marginLeft: 4,
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-        textAlign: 'right',
-    },
-    input: {
-        backgroundColor: 'white',
-        width: 230,
-        height: 30,
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Regular',
-        paddingVertical: 6,
-        paddingHorizontal: 10,
-        color: '#419ED7',
-    },
-});
 
 
 export default NovaConta
