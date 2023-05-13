@@ -1,52 +1,15 @@
 import { View, Image, FlatList, TextInput } from 'react-native'
-import React, { useState } from 'react';
 import CustomButton from '../components/Button';
 import { styles } from '../styles/HomeStyle';
-import Vacina from "../components/Vacina";
+// import Vacina from "../components/Vacina";
+import React from 'react';
+import {Vacina, listaVacinas} from "../components/ArrayVacinas";
+import { useIsFocused } from '@react-navigation/native';
 
 const Home = (props) => {
 
-  const [pesquisa, setPesquisa] = useState("");
-
-  const listaVacinas = [
-    {
-      id: 1,
-      nome: 'BCG',
-      data: '11/06/2022',
-      dose: 'Dose única',
-      proxima: "Não há próxima dose"
-    },
-    {
-      id: 2,
-      nome: 'Febre amarela',
-      data: '11/10/2022',
-      dose: '1a. dose',
-      proxima: '11/10/2023'
-    },
-    {
-      id: 3,
-      nome: 'Hepatite B',
-      data: '11/08/2022',
-      dose: '1a. dose',
-      proxima: '11/10/2022',
-    },
-    {
-      id: 4,
-      nome: 'Poliomelite',
-      data: '11/08/2022',
-      dose: '1a. dose',
-      proxima: '11/10/2022',
-    },
-    {
-      id: 5,
-      nome: 'Gripe',
-      data: '22/12/2019',
-      dose: '3',
-      proxima: '22/12/2029'
-    },
-
-  ]
-
+  const attTela = useIsFocused();
+ 
   return (
 
     <View style={styles.container}>
@@ -56,9 +19,9 @@ const Home = (props) => {
         <TextInput placeholder='PESQUISAR VACINA...' style={styles.textoPesquisa} />
       </View>
 
-      <View style={styles.lista}>
-        <FlatList data={listaVacinas} renderItem={Vacina} keyExtractor={item => item.id} numColumns={2} />
-      </View>
+       {/* <View style={styles.lista}>  */}
+        <FlatList data={listaVacinas} extraData={attTela} renderItem={({item}) => Vacina({item}, props)} keyExtractor={item => item.id} numColumns={2} /> 
+       {/* </View>  */}
 
       <View style={styles.botao}>
         <CustomButton onPress={() => props.navigation.push('NovaVacina')} color="#37BD6D" width={160} height={40} text="Nova vacina" />

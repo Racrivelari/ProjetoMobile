@@ -3,8 +3,6 @@ import CustomButton from '../components/Button';
 import LinearGradient from 'react-native-linear-gradient';
 import {styles} from '../styles/LoginStyle'
 
-//TELA PRONTA, + NAVEGACAO NOS BOTOES  
-//separar o stylesheet em outro arquivo tbm
 
 const Login = (props) => {
 
@@ -46,9 +44,14 @@ const Login = (props) => {
                 </View>
 
                 <View style={styles.botoes}>
-                    <CustomButton onPress={() => props.navigation.push('DrawerNavigation')} color= "#37BD6D" width={140} height={40} text= "Entrar"/>
-                    <CustomButton onPress={() => props.navigation.push('NovaConta')} color= "#419ED7" width={190} height={40} marginTop={70} text= "Criar minha conta"/>
+
+                    <CustomButton onPress={() => props.navigation.push('DrawerNavigation')} color= "#37BD6D" width={140} height={40} text= "Entrar"/> 
+                     <CustomButton onPress={() => props.navigation.push('NovaConta')} color= "#419ED7" width={190} height={40} marginTop={70} text= "Criar minha conta"/>
                     <CustomButton onPress={() => props.navigation.push('RecuperarSenha')} color= "#B0CCDE" width={190} height={40} marginTop={70} text= "Esqueci minha senha"/>
+                    {/* <CustomButton onPress={() => props.navigation.push('AddDataScreen')} color= "#419ED7" width={190} height={40} marginTop={70} text= "CRUD"/>
+                     <CustomButton onPress={() => props.navigation.push('ListDataScreen')} color= "#B0CCDE" width={190} height={40} marginTop={70} text= "RENDER"/> */}
+                    {/* <CustomButton onPress={() => props.navigation.push('ArrayVacinas')} color= "#419ED7" width={190} height={40} marginTop={70} text= "ARRAY"/> */}
+
                 </View>
 
             </View>
