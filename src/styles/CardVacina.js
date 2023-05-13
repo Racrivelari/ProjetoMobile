@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-const styles = StyleSheet.create({
+const stylesVacinas = StyleSheet.create({
     view: {
         flex: 1,
         alignItems: 'center',
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
 
 })
 
-export { styles }
+export { stylesVacinas }

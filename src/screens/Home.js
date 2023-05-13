@@ -19,9 +19,7 @@ const Home = (props) => {
         <TextInput placeholder='PESQUISAR VACINA...' style={styles.textoPesquisa} />
       </View>
 
-       {/* <View style={styles.lista}>  */}
-        <FlatList data={listaVacinas} extraData={attTela} renderItem={({item}) => Vacina({item}, props)} keyExtractor={item => item.id} numColumns={2} /> 
-       {/* </View>  */}
+      <FlatList data={listaVacinas} extraData={attTela} renderItem={({item}) => Vacina({item}, props)} keyExtractor={item => item.id} numColumns={2} /> 
 
       <View style={styles.botao}>
         <CustomButton onPress={() => props.navigation.push('NovaVacina')} color="#37BD6D" width={160} height={40} text="Nova vacina" />

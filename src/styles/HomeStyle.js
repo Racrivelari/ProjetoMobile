@@ -15,10 +15,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         flexDirection: 'row',
         backgroundColor: '#37BD6D',
-        // marginTop: 600,
         elevation: 3,
         marginBottom: 50,
-        // position: 'absolute'
     },
 
     pesquisa: {

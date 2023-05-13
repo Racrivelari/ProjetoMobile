@@ -2,7 +2,9 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+        flex: 1,
+        backgroundColor: '#ADD4D0',
+        padding: 10,
     },
     nav: {  
       alignItems: 'center',
@@ -15,7 +17,6 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingTop:30,
       alignItems: 'center',
-    //   paddingLeft:30
     },
     text:{
         fontSize: 34,
@@ -56,7 +57,11 @@ const styles = StyleSheet.create({
       fontFamily: 'AveriaLibre-Regular',
     },
     botao:{
-      marginTop: 300,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        backgroundColor: '#37BD6D',
+        elevation: 3,
+        marginBottom: 50,
     },
     textB:{
       fontSize: 18,
