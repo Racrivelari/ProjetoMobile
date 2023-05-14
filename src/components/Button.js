@@ -25,6 +25,7 @@ const CustomButton = ({ color, width, height, marginTop , text, onPress }) => {
     <TouchableOpacity onPress={onPress} style={buttonStyle}>
       <Text style={textStyle}>{text}</Text>
     </TouchableOpacity>
+    
   );
 };
 

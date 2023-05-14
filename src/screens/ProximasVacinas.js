@@ -1,4 +1,3 @@
-
 import {styles} from '../styles/ProximasVacinasStyle';
 import { View, FlatList} from 'react-native'
 import CustomButton from '../components/Button';
@@ -15,7 +14,13 @@ const ProximasVacinas = (props) => {
 
     <View style={styles.container}>
 
-      <FlatList data={listaVacinas} extraData={attTela} renderItem={({item}) => VacinaProx({item}, props)} keyExtractor={item => item.id} numColumns={1} /> 
+      <FlatList 
+          data={listaVacinas} 
+          extraData={attTela} 
+          renderItem={({item}) => VacinaProx({item}, props)} 
+          keyExtractor={item => item.id} 
+          numColumns={1} 
+      /> 
       
       <View style={styles.botao}>
         <CustomButton onPress={() => props.navigation.push('NovaVacina')} color="#37BD6D" width={160} height={40} text="Nova vacina" />
@@ -25,9 +30,6 @@ const ProximasVacinas = (props) => {
 
   );
 };
-
-
-
 
 export default ProximasVacinas
 

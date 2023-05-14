@@ -52,6 +52,18 @@ const styles = StyleSheet.create({
       marginTop: 50,
       alignItems: 'center',      
     },
+    textInvalido:{
+      color: 'red', 
+      fontFamily: 'AveriaLibre-Regular', 
+      fontSize: 16, 
+      marginLeft: 77
+    },
+    imgBackground:{
+      flex:1, 
+      position: 'absolute',
+      width: '100%',
+      height: '100%'
+    }
   });
 
   export {styles}

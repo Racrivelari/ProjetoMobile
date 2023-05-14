@@ -1,6 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { StyleSheet, Text } from 'react-native'
-import { Image, View } from 'react-native';
+import { StyleSheet, Text, Image, View } from 'react-native'
 
 import CustomDrawer from "./CustomDrawer";
 import Home from '../screens/Home'
@@ -24,10 +23,10 @@ const DrawerScreenOptions = (drawerItemLabel, iconURL) => {
     return {
         headerShown: true,
         headerTitle: {drawerItemLabel},
-        headerTitleStyle: {fontSize: 34, fontFamily: 'AveriaLibre-Regular', color: '#419ED7',},
+        headerTitleStyle: {fontSize: 34, fontFamily: 'AveriaLibre-Regular', color: '#419ED7'},
         drawerLabel: () => (
             <View style={styles.drawerItem}>
-                <Image source={iconURL} style={{ width: 28, height: 30, marginRight: 12 }} />
+                <Image source={iconURL} style={styles.iconURL} />
                 <Text style={styles.txt}>{drawerItemLabel}</Text>
             </View>
         ),
@@ -39,20 +38,12 @@ const DrawerNavigation = () => {
 
         <Drawer.Navigator screenOptions={headerOptions} drawerContent={(props) => <CustomDrawer {...props} />}>
 
-            <Drawer.Screen
-                name="Minhas vacinas"
-                component={Home}
-                options={{
-                    ...DrawerScreenOptions('Minhas vacinas', IconVacina),
-                }}
+            <Drawer.Screen name="Minhas vacinas" component={Home}
+                options={{...DrawerScreenOptions('Minhas vacinas', IconVacina)}}
             />
 
-            <Drawer.Screen
-                name="Próximas vacinas"
-                component={ProximasVacinas}
-                options={{
-                    ...DrawerScreenOptions('Próximas vacinas', IconCalendar),
-                }}
+            <Drawer.Screen name="Próximas vacinas" component={ProximasVacinas}
+                options={{...DrawerScreenOptions('Próximas vacinas', IconCalendar)}}
             />
 
         </Drawer.Navigator>
@@ -70,7 +61,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginHorizontal: 20,
-      },
+    },
+    iconURL:{
+        width: 28, 
+        height: 30, 
+        marginRight: 12 
+    },
 })
 
 export default DrawerNavigation;

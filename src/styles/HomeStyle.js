@@ -6,11 +6,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#ADD4D0',
         padding: 10,
     },
-    lista: {
-        flexDirection: 'row', 
-        justifyContent: 'space-around',
-        marginTop: 15,
-    },
     botao: {
         alignSelf: 'center',
         flexDirection: 'row',
@@ -18,7 +13,6 @@ const styles = StyleSheet.create({
         elevation: 3,
         marginBottom: 50,
     },
-
     pesquisa: {
         flexDirection: 'row',
         marginTop: 10,
@@ -34,6 +28,13 @@ const styles = StyleSheet.create({
         fontFamily: 'AveriaLibre-Regular',
         color: '#8B8B8B',
     },
+    img:{
+        position: 'absolute',
+        width: 20,
+        height: 20,
+        marginLeft: 10,
+        marginTop: 10,
+    }
 
 });
 

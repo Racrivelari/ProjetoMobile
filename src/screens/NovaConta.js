@@ -1,20 +1,18 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
 import { RadioButton } from 'react-native-paper';
 import React, { useState } from 'react';
 import DatePicker from 'react-native-date-picker'
 import CustomButton from '../components/Button';
 import {styles} from '../styles/NovaContaStyle'
+import {formatDate } from "../components/ArrayVacinas";
+
+
 const NovaConta = (props) => {
 
     const [date, setDate] = useState(new Date())
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState('Masculino');
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const formattedDate = `${day}/${month}/${year}`;
 
-    //func que trata selecao da data
     const handleDateSelect = (date) => {
         setDate(date);
         setOpen(false);
@@ -23,8 +21,6 @@ const NovaConta = (props) => {
     return (
 
         <View style={styles.container}>
-
-        
 
             <View style={{ marginTop: 70 }}></View>
 
@@ -52,8 +48,8 @@ const NovaConta = (props) => {
             <View style={styles.row}>
                 <Text style={styles.label}>Data nascimento</Text>
                 <TouchableOpacity style={styles.input} onPress={() => setOpen(true)}  >
-                    <Image style ={{position: 'absolute', width: 20, height: 25, marginLeft:200, marginTop: 5}} source={require('../assets/images/calendar.png')} />
-                    <Text style={styles.textD}> {formattedDate} </Text>
+                    <Image style ={styles.calendarIcon} source={require('../assets/images/calendar.png')} />
+                    <Text style={styles.textD}> {formatDate(date)} </Text>
                 </TouchableOpacity>
                 <DatePicker modal title='Selecione a data' open={open} date={date} locale='pt-BR' mode='date' 
                     onConfirm={handleDateSelect} 
@@ -76,7 +72,7 @@ const NovaConta = (props) => {
                 <TextInput secureTextEntry={true} style={styles.input} placeholder="****" placeholderTextColor="#419ED7" />
             </View>
 
-            <Text style={{ color: 'red', fontFamily: 'AveriaLibre-Regular', fontSize: 16, marginLeft: 40 }}>Senha não confere!</Text>
+            <Text style={styles.textSenhaInvalida}>Senha não confere!</Text>
 
             <View style={styles.botoes}>
                 <CustomButton onPress={() => props.navigation.pop()} color= "#37BD6D" width={160} height={40} text= "Cadastrar"/>
@@ -86,9 +82,6 @@ const NovaConta = (props) => {
 
     );
 };
-
-
-
 
 export default NovaConta
 

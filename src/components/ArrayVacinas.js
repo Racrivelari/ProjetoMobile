@@ -1,50 +1,48 @@
-export let listaVacinas = [];
-
 import {Image, Text,TouchableOpacity, View} from 'react-native'
 import {stylesVacinas} from '../styles/CardVacina';
 import {stylesProximas} from '../styles/CardProximaVacina'
 
-
-export const cadastrarVacina = (nome, dataVac, dataProx, dose, props) => {
-  // if (dose == "Dose única") dataProx = null
-  listaVacinas.push({
-    id: listaVacinas.length === 0 ? 0 : listaVacinas[listaVacinas.length - 1].id + 1,
-    nome: nome,
-    dataVac: dataVac,
-    dataProx: dataProx,
-    dose: dose,
-  });
-  props.navigation.goBack();
-  listaVacinas.forEach((v) => {
-    console.log(v);
-  });
+export const formatDate = (date) => {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const formattedDate = `${day}/${month}/${year}`;
+  return formattedDate
 }
 
-//retorna -1 se nao encontrar o elemento no array com base no id fornecido
+export let listaVacinas = [];
+
+export const cadastrarVacina = (nome, dataVac, dataProx, dose, props) => {
+  listaVacinas.push({
+      //verifica se é o primeiro elemento, se for, id: 0, senão id: id +1
+      id: listaVacinas.length === 0 ? 0 : listaVacinas[listaVacinas.length - 1].id + 1,
+      nome: nome,
+      dataVac: dataVac,
+      dataProx: dataProx,
+      dose: dose,
+  });
+  props.navigation.goBack();
+}
+
 export const editarVacina = (id, nome, dataVac, dataProx, dose, props) => {
   const vacinaIndex = listaVacinas.findIndex((v) => v.id === id);
-  // if (dose == "Dose única") dataProx = null
-  if (vacinaIndex !== -1) {
     listaVacinas[vacinaIndex] = {
-      ...listaVacinas[vacinaIndex],
-      nome,
-      dataVac,
-      dataProx,
-      dose,
+        ...listaVacinas[vacinaIndex],
+        nome,
+        dataVac,
+        dataProx,
+        dose,
     };
-  }
   props.navigation.goBack();
 };
 
 export const excluirVacina = (id, props) => {
-  const vacinaIndex = listaVacinas.findIndex((v) => v.id === id);
-  if (vacinaIndex !== -1) {
+    const vacinaIndex = listaVacinas.findIndex((v) => v.id === id);
     listaVacinas.splice(vacinaIndex, 1);
-  }
-  props.navigation.goBack();
+    props.navigation.goBack();
 };
 
-// CARD VACINA
+// Card Vacina
 export const Vacina = ({item}, props) => {
   return (
       <View style={stylesVacinas.view}>
@@ -57,26 +55,25 @@ export const Vacina = ({item}, props) => {
                   <Image style={stylesVacinas.imagem} source={require('../assets/images/image-comprovante.png')} />
               </View>
               {item.dose !== 'Dose única' ?
-  <Text style={stylesVacinas.proxima}>Próxima dose em: {item.dataProx}</Text> :
-  <Text style={stylesVacinas.proxima}>Não há próxima dose!</Text>
-}
-
+                <Text style={stylesVacinas.proxima}>Próxima dose em: {item.dataProx}</Text> :
+                <Text style={stylesVacinas.proxima}>Não há próxima dose!</Text>
+              }
           </TouchableOpacity >
       </View>
   )
 }
 
-//CARD PROXIMAS
+//Card Próximas Vacinas
 export const VacinaProx = ({item}) => {
   return (
       <View style={stylesProximas.view}>
              {item.dose != 'Dose única' ? (
-             <View style={stylesProximas.card}>
-                <Text style={stylesProximas.nome}>{item.nome}</Text>
-                <Text style={stylesProximas.proximas}>{item.dataProx}</Text>
-             </View>): ""}
+                <View style={stylesProximas.card}>
+                    <Text style={stylesProximas.nome}>{item.nome}</Text>
+                    <Text style={stylesProximas.proximas}>{item.dataProx}</Text>
+                </View>
+              ): ""}
       </View>
-
   )
 }
 

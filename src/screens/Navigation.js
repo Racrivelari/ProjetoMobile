@@ -8,11 +8,6 @@ import NovaConta from "./NovaConta";
 import EditarVacina from "./EditarVacina";
 import NovaVacina from "./NovaVacina";
 
-// import AddDataScreen from './CRUD'
-// import ListDataScreen from './RENDERIZA'
-
-// import ArrayVacinas from "../components/ArrayVacinas";
-
 const Stack = createStackNavigator();
 
 const StackNaviScreenOptions = () => {
@@ -33,29 +28,18 @@ const StackScreenOptions = (text) => {
 
 const Navigation = () => {
     return (
+
         <NavigationContainer>
            <Stack.Navigator screenOptions={StackNaviScreenOptions}>
-
                 <Stack.Screen name="Login" component={Login} />
-
                 <Stack.Screen name="NovaConta" component={NovaConta} options={StackScreenOptions('Nova Conta')}/>
-
                 <Stack.Screen name="DrawerNavigation" component={DrawerNavigation} />
-
                 <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} />
-{/* 
-                {/* <Stack.Screen name="ArrayVacinas" component={ArrayVacinas} options={StackScreenOptions('ArrayVacinas')}/> */}
-
-                {/* <Stack.Screen name="AddDataScreen" component={AddDataScreen} options={StackScreenOptions('AddDataScreen')}/>
-                <Stack.Screen name="ListDataScreen" component={ListDataScreen} options={StackScreenOptions('ListDataScreen')}/>  */}
-
-
                 <Stack.Screen name="NovaVacina" component={NovaVacina} options={StackScreenOptions('Nova Vacina')}/>
-
                 <Stack.Screen name="EditarVacina" component={EditarVacina} options={StackScreenOptions('Editar Vacina')}/>
-
             </Stack.Navigator>
         </NavigationContainer>
+
     )
 }
 

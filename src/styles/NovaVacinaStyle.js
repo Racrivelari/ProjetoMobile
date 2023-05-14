@@ -12,38 +12,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    nav: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        padding: 10,
-        backgroundColor: '#C1E7E3',
-        width: "100%",
-    },
-    text: {
-        fontSize: 34,
-        fontFamily: 'AveriaLibre-Regular',
-        color: '#419ED7',
-    },
     textB: {
         fontSize: 18,
         fontFamily: 'AveriaLibre-Regular',
         color: 'white'
     },
- 
     botoes: {
         justifyContent: 'center',
         flex: 1
     },
-    button: {
-        width: 160,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#37BD6D',
-        shadowColor: 'black',
-        elevation: 10,
-    },
-   
     input: {
         backgroundColor: 'white',
         width: 160,
@@ -54,7 +31,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#419ED7',
     },
-
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -81,6 +57,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'AveriaLibre-Regular',
     },
+    calendarIcon:{
+        position: 'absolute', 
+        width: 20,
+        height: 25, 
+        marginLeft: 130, 
+        marginTop: 5 
+    },
+    imgComprovante:{
+        width: 180, 
+        height: 90, 
+        marginLeft: 160 
+    }
 });
 
 export {styles};

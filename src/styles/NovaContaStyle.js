@@ -21,12 +21,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-  
-    textB: {
-        fontSize: 18,
-        fontFamily: 'AveriaLibre-Regular',
-        color: 'white'
-    },
     textI: {
         fontSize: 16,
         fontFamily: 'AveriaLibre-Regular',
@@ -37,20 +31,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1
     },
-    button: {
-        width: 160,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#37BD6D',
-        shadowColor: 'black',
-        elevation: 10,
-    },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10,
-
     },
     label: {
         marginRight: 10,
@@ -70,6 +54,19 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         paddingHorizontal: 10,
         color: '#419ED7',
+    },
+    calendarIcon:{
+        position: 'absolute', 
+        width: 20, 
+        height: 25, 
+        marginLeft:200, 
+        marginTop: 5
+    },
+    textSenhaInvalida:{
+        color: 'red', 
+        fontFamily: 'AveriaLibre-Regular', 
+        fontSize: 16, 
+        marginLeft: 40
     },
 });
 

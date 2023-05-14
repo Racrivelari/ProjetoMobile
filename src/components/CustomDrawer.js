@@ -1,6 +1,5 @@
-import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-
 
 const CustomDrawerItem = ({ label, icon, onPress }) => (
     <TouchableOpacity style={styles.item} onPress={onPress}>
@@ -13,6 +12,7 @@ const CustomDrawerItem = ({ label, icon, onPress }) => (
 
 const CustomDrawer = (props) => {
     return (
+        
         <DrawerContentScrollView {...props}>
 
             {/* viewJurandir */}

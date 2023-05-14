@@ -44,20 +44,6 @@ const styles = StyleSheet.create({
     botao:{
       marginTop: 60,
     },
-    textB:{
-      fontSize: 18,
-      fontFamily: 'AveriaLibre-Regular',
-      color: 'white'
-    },
-    button: {
-      width: 160, 
-      height: 40, 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      backgroundColor: '#37BD6D', 
-      shadowColor: 'black', 
-      elevation: 10,
-    }
   });
 
 export {styles}

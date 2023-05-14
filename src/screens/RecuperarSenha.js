@@ -1,8 +1,6 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TextInput } from 'react-native'
 import  CustomButton from '../components/Button';
 import {styles} from '../styles/RecuperarSenhaStyle';
-
-//TELA PRONTA, + NAVEGACAO NOS BOTOES + INVES DE USAR TOUCHABLEOPACITY AQUI, CRIAR UM COMPONENT BUTTON COM PARAMETRO DE TEXTO E CORE MARGIN
 
 const RecuperarSenha = (props) => {
 
@@ -31,9 +29,6 @@ const RecuperarSenha = (props) => {
       
     );
 };
-
-
-
 
 export default RecuperarSenha
 
