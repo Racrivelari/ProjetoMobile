@@ -1,0 +1,7 @@
+Utilizei o Pixel 5 como AVD, pra rodar legal a responsividade na aula,
+configurar pra Pixel 3a XL
+
+*Step 1: configurar pro pixel 3a xl
+*Step 2: abrir cmd, emulator -avd android
+*Step 3: npm install dentro do vs code  (demora pra compilar e rodar)
+*Step 4: npx react-native run-android   (demora pra compilar e rodar)
