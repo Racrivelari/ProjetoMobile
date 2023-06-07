@@ -17,7 +17,7 @@ const CustomDrawer = (props) => {
 
             {/* viewJurandir */}
             <View style={styles.vJurandir}>
-                <Text style={styles.tJurandir}> Olá Jurandir </Text>
+                <Text style={styles.tJurandir}> Seja bem vindo </Text>
             </View>
 
             {/* viewLine */}

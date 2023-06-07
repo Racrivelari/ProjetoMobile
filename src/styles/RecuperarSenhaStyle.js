@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
       marginLeft: 5,
       fontSize: 18,
       fontFamily: 'AveriaLibre-Regular',
+      color: "#419ED7",
     },
     botao:{
       marginTop: 60,

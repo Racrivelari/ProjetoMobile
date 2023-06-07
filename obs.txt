@@ -5,3 +5,11 @@ configurar pra Pixel 3a XL
 *Step 2: abrir cmd, emulator -avd android
 *Step 3: npm install dentro do vs code  (demora pra compilar e rodar)
 *Step 4: npx react-native run-android   (demora pra compilar e rodar)
+
+
+EMAILS: 
+obs firebase ta no ramoncrivelari@alunos.utfpr.edu.br
+https://console.firebase.google.com/u/1/project/myhealthmobile-a3183/overview?hl=pt-br
+
+ramon@gmail.com 123456
+t@gmail.com 123456

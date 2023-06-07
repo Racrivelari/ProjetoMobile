@@ -1,11 +1,53 @@
 import { View, Image, FlatList, TextInput } from 'react-native'
 import CustomButton from '../components/Button';
 import { styles } from '../styles/HomeStyle';
-import React, { useState } from 'react';
-import { Vacina, listaVacinas } from "../components/ArrayVacinas";
+import React, { useState , useEffect} from 'react';
+import { Vacina } from "../components/CrudVacinas";
 import { useIsFocused } from '@react-navigation/native';
+import { auth, db} from '../firebase/config'
+import { useSelector } from 'react-redux'
+
+import { onSnapshot, query, collection, where } from 'firebase/firestore'
 
 const Home = (props) => {
+
+    const [listaVacinas, setListaVacinas] = useState([])
+
+    const uid = useSelector((state) => state.slices.uid)
+
+    useEffect(() => {
+
+      auth.onAuthStateChanged(user => {   
+        if (user) {
+
+          const q = query(collection(db, "vacinas"), where ("uid", "==", uid))
+
+          // where ("uid", "==", user.uid))
+
+          onSnapshot(q, (snapshot) => {
+
+              const vacinas = []
+  
+              snapshot.forEach((doc) => {
+                  vacinas.push({
+                      id: doc.id,
+                      nome: doc.data().nome,
+                      dose: doc.data().dose,
+                      dateVac: doc.data().dateVac,
+                      dateProx: doc.data().dateProx,
+                      urlImagem: doc.data().urlImagem
+                  })
+                  console.log("Documento: " + JSON.stringify(doc.data()))
+              })
+  
+              setListaVacinas(vacinas)
+          })
+        }
+      }
+
+    )
+  }, [])
+
 
   const [searchText, setSearchText] = useState('');
   const attTela = useIsFocused();
@@ -14,10 +56,7 @@ const Home = (props) => {
     setSearchText(text);
   };
 
-  const filteredVacinas = listaVacinas.filter(
-    (vacina) =>
-      vacina.nome.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const filteredVacinas = listaVacinas.filter(documento => documento.nome.toLowerCase().includes(searchText.toLowerCase()))
 
   return (
     <View style={styles.container}>

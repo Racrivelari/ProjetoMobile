@@ -4,7 +4,11 @@ import React, { useState } from 'react';
 import DatePicker from 'react-native-date-picker'
 import CustomButton from '../components/Button';
 import { styles } from '../styles/NovaVacinaStyle';
-import { cadastrarVacina, formatDate } from "../components/ArrayVacinas";
+import { cadastrarVacina, formatDate} from "../components/CrudVacinas";
+import { launchCamera } from 'react-native-image-picker'
+// import { auth } from '../firebase/config'
+import { useSelector } from 'react-redux'
+
 
 const NovaVacina = (props) => {
 
@@ -20,7 +24,26 @@ const NovaVacina = (props) => {
     const [dose, setDose] = useState('1a. dose');
     const [dateVac, setDateVac] = useState(new Date());
     const [dateProx, setDateProx] = useState(new Date());
+    const [foto, setFoto] = useState()
+    const [urlFoto, setUrlFoto] = useState('')
 
+    const uid = useSelector((state) => state.slices.uid)
+
+    // const uid = auth.currentUser.uid
+
+    const capturarImagem = () => {
+
+      launchCamera({ mediaType: 'photo', cameraType: 'back', quality: 1 })
+          .then((result) => {
+              setFoto(result.assets[0])
+              setUrlFoto(result.assets[0].uri)
+          })
+          .catch((error) => {
+              console.log("Error ao capturar imagem: " + JSON.stringify(error))
+          })
+
+  }
+  
     return (
 
         <View style={styles.container}>
@@ -69,10 +92,12 @@ const NovaVacina = (props) => {
 
             <View style={[styles.row]}>
                 <Text style={styles.label}>Comprovante</Text>
-                <CustomButton color="#419ED7" width={170} height={30} text="Selecione imagem..." />
+                <CustomButton color="#419ED7" width={170} height={30} text="Selecione imagem..." onPress={() => { capturarImagem() }} />
             </View>
 
-            <Image style={styles.imgComprovante} source={require('../assets/images/image-comprovante.png')} />
+            {urlFoto ? <Image source={{ uri: urlFoto }} style={styles.imgComprovante} />: null}
+
+            {/* <Image style={styles.imgComprovante} source={require('../assets/images/image-comprovante.png')} /> */}
 
             <View style={[styles.row, { marginTop: 15 }]}>
                 <Text style={styles.label}>Próxima vacinação</Text>
@@ -88,7 +113,7 @@ const NovaVacina = (props) => {
             </View>
 
             <View style={styles.botoes}>
-                <CustomButton onPress={() => cadastrarVacina(nome, formatDate(dateVac), formatDate(dateProx), dose, props)} color="#37BD6D" width={160} height={40} text="Cadastrar" />
+                <CustomButton onPress={() => cadastrarVacina(nome, dose, formatDate(dateVac), formatDate(dateProx), urlFoto, uid, props)} color="#37BD6D" width={160} height={40} text="Cadastrar" />
             </View>
 
         </View>

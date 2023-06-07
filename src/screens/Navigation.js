@@ -7,6 +7,8 @@ import RecuperarSenha from "./RecuperarSenha";
 import NovaConta from "./NovaConta";
 import EditarVacina from "./EditarVacina";
 import NovaVacina from "./NovaVacina";
+import { Provider } from "react-redux"
+import { store } from "../redux/store"
 
 const Stack = createStackNavigator();
 
@@ -29,16 +31,18 @@ const StackScreenOptions = (text) => {
 const Navigation = () => {
     return (
 
-        <NavigationContainer>
-           <Stack.Navigator screenOptions={StackNaviScreenOptions}>
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="NovaConta" component={NovaConta} options={StackScreenOptions('Nova Conta')}/>
-                <Stack.Screen name="DrawerNavigation" component={DrawerNavigation} />
-                <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} />
-                <Stack.Screen name="NovaVacina" component={NovaVacina} options={StackScreenOptions('Nova Vacina')}/>
-                <Stack.Screen name="EditarVacina" component={EditarVacina} options={StackScreenOptions('Editar Vacina')}/>
-            </Stack.Navigator>
-        </NavigationContainer>
+        <Provider store={store}>
+            <NavigationContainer>
+            <Stack.Navigator screenOptions={StackNaviScreenOptions}>
+                    <Stack.Screen name="Login" component={Login} />
+                    <Stack.Screen name="NovaConta" component={NovaConta} options={StackScreenOptions('Nova Conta')}/>
+                    <Stack.Screen name="DrawerNavigation" component={DrawerNavigation} />
+                    <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} />
+                    <Stack.Screen name="NovaVacina" component={NovaVacina} options={StackScreenOptions('Nova Vacina')}/>
+                    <Stack.Screen name="EditarVacina" component={EditarVacina} options={StackScreenOptions('Editar Vacina')}/>
+                </Stack.Navigator>
+            </NavigationContainer>
+        </Provider>
 
     )
 }

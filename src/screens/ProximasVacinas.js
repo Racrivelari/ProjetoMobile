@@ -1,12 +1,41 @@
 import {styles} from '../styles/ProximasVacinasStyle';
 import { View, FlatList} from 'react-native'
 import CustomButton from '../components/Button';
-import React from 'react';
-import {VacinaProx, listaVacinas} from "../components/ArrayVacinas";
+import React, { useState , useEffect} from 'react';
+import {VacinaProx} from "../components/CrudVacinas";
 import { useIsFocused } from '@react-navigation/native';
+import { useSelector } from 'react-redux'
 
+import { db } from '../firebase/config'
+import { onSnapshot, query, collection , where} from 'firebase/firestore'
 
 const ProximasVacinas = (props) => {
+
+  const [listaVacinas, setListaVacinas] = useState([])
+
+  const uid = useSelector((state) => state.slices.uid)
+
+    useEffect(() => {
+        const q = query(collection(db, "vacinas"), where ("uid", "==", uid))
+
+        onSnapshot(q, (snapshot) => {
+            const vacinas = []
+
+            snapshot.forEach((doc) => {
+                vacinas.push({
+                    id: doc.id,
+                    nome: doc.data().nome,
+                    dose: doc.data().dose,
+                    dateVac: doc.data().dateVac,
+                    dateProx: doc.data().dateProx,
+                    urlImagem: doc.data().urlImagem
+                })
+                console.log("Documento: " + JSON.stringify(doc.data()))
+            })
+
+            setListaVacinas(vacinas)
+        })
+    }, [])
 
   const attTela = useIsFocused();
 

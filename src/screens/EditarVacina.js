@@ -1,11 +1,12 @@
 import { View, Text, Modal, Image, TextInput, TouchableOpacity } from 'react-native'
 import { RadioButton } from 'react-native-paper';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-native-date-picker'
 import CustomButton from '../components/Button';
 import { styles } from '../styles/EditarVacinaStyle';
-import { editarVacina, excluirVacina, formatDate } from "../components/ArrayVacinas";
-
+// import { editarVacina, excluirVacina, formatDate } from "../components/ArrayVacinas";
+import { editarVacina, excluirVacina, formatDate } from "../components/CrudVacinas";
+import { launchCamera } from 'react-native-image-picker'
 
 const EditarVacina = (props) => {
     const vacina = props.route.params.item;
@@ -20,15 +21,31 @@ const EditarVacina = (props) => {
         return new Date(year, month - 1, day);
     };
 
-    const [dateProx, setDateProx] = useState(converteData(vacina.dataProx));
-    const [dateVac, setDateVac] = useState(converteData(vacina.dataVac));
+    const [dateProx, setDateProx] = useState(converteData(vacina.dateProx));
+    const [dateVac, setDateVac] = useState(converteData(vacina.dateVac));
     const [openProx, setOpenProx] = useState(false)
     const [openVac, setOpenVac] = useState(false)
+    const [foto, setFoto] = useState()
+    const [urlFoto, setUrlFoto] = useState(vacina.urlImagem)
 
+  
     const handleDateSelect = (setDate, setOpen) => (date) => {
         setDate(date);
         setOpen(false);
     };
+
+    const capturarImagem = () => {
+
+        launchCamera({ mediaType: 'photo', cameraType: 'back', quality: 1 })
+            .then((result) => {
+                setFoto(result.assets[0])
+                setUrlFoto(result.assets[0].uri)
+            })
+            .catch((error) => {
+                console.log("Error ao capturar imagem: " + JSON.stringify(error))
+            })
+
+    }
 
     return (
 
@@ -80,10 +97,10 @@ const EditarVacina = (props) => {
 
             <View style={[styles.row]}>
                 <Text style={styles.label}>Comprovante</Text>
-                <CustomButton color="#419ED7" width={170} height={30} text="Selecione imagem..." />
+                <CustomButton color="#419ED7" width={170} height={30} text="Selecione imagem..." onPress={() => { capturarImagem() }} />
             </View>
 
-            <Image style={styles.imgComprovante} source={require('../assets/images/image-comprovante.png')} />
+            {urlFoto ? <Image source={{ uri: urlFoto }} style={styles.imgComprovante} />: null}
             
             <View style={[styles.row, { marginTop: 15 }]}>
                 <Text style={styles.label}>Próxima vacinação</Text>
@@ -116,7 +133,7 @@ const EditarVacina = (props) => {
             </View>
 
             <View style={styles.botoes}>
-                <CustomButton onPress={() => { editarVacina(vacina.id, nome, formatDate(dateVac), formatDate(dateProx), dose, props) }} color="#37BD6D" width={160} height={40} text="Salvar alterações" />
+                <CustomButton onPress={() => { editarVacina(vacina.id, nome, dose, formatDate(dateVac), formatDate(dateProx), urlFoto, props) }} color="#37BD6D" width={160} height={40} text="Salvar alterações" />
                 <CustomButton onPress={() => setModalVisible(true)} color="#FD7979" width={160} height={40} marginTop={40} text="Excluir" />
             </View>
 
